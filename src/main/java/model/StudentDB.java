@@ -1,17 +1,19 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class StudentDB {
     //private Student[] students;
-    private ArrayList<Student> students = new ArrayList<>();
+    //private List<Student> students;
 
-    public StudentDB(ArrayList<Student> students) {
-        this.students = students;
+    private Map<Integer, Student> students;
+
+
+    public StudentDB() {
+        students = new HashMap<>();
     }
 
-    public ArrayList<Student> getAllStudents() {
+    public Map<Integer, Student> getAllStudents() {
         if (students.size() > 0) {
             return students;
         }
@@ -30,19 +32,15 @@ public class StudentDB {
         return students.get(studentIndex);
     }
 
-    public boolean add(Student student) {
-        if (!students.contains(student)) {
-            return students.add(student);
-        }
-        return false;
+    public void add(Student student)  {
+        students.put(student.getStudentId(), student);
     }
 
-    public Student remove(Student student) {
-        if (students.contains(student)) {
-            return student;
-        } else
-            return null;
+    public void remove(Student student) {
+        students.remove(student.getStudentId());
     }
+
+
     /*
     public boolean removeByIndex(int index) {
         for (int i = 0; i < students.size(); i++) {
